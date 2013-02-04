@@ -19,6 +19,9 @@
     
     CGFloat _knobXOffset;
     CGFloat _knobYOffset;
+    
+    UILabel *_onLabel;
+    UILabel *_offLabel;
 }
 
 @property (strong, nonatomic) UIImage *backgroundImage UI_APPEARANCE_SELECTOR;

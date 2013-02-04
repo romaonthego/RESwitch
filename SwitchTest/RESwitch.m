@@ -41,6 +41,26 @@
         
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecognizerDidChange:)];
         [_backgroundView addGestureRecognizer:tapGestureRecognizer];
+        
+        _onLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 3, 20, 10)];
+        _onLabel.text = NSLocalizedString(@"ON", @"ON");
+        _onLabel.font = [UIFont boldSystemFontOfSize:17];
+        _onLabel.backgroundColor = [UIColor clearColor];
+        _onLabel.shadowOffset = CGSizeMake(0, -1);
+        _onLabel.shadowColor = [UIColor colorWithRed:0 green:102/255.0 blue:186/255.0 alpha:1];
+        _onLabel.textColor = [UIColor whiteColor];
+        [_onLabel sizeToFit];
+        [_backgroundView addSubview:_onLabel];
+        
+        _offLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 3, 20, 10)];
+        _offLabel.text = NSLocalizedString(@"OFF", @"OFF");
+        _offLabel.font = [UIFont boldSystemFontOfSize:17];
+        _offLabel.backgroundColor = [UIColor clearColor];
+        _offLabel.shadowOffset = CGSizeMake(0, -1);
+        _offLabel.shadowColor = [UIColor clearColor];
+        _offLabel.textColor = [UIColor colorWithRed:139/255.0 green:139/255.0 blue:139/255.0 alpha:1];
+        [_offLabel sizeToFit];
+        [_backgroundView addSubview:_offLabel];
     }
     return self;
 }
@@ -77,6 +97,14 @@
     knobFrame.origin.x = frame.origin.x + self.frame.size.width - knobFrame.size.width + _knobXOffset;
     knobFrame.origin.y = _knobYOffset;
     _knobView.frame = knobFrame;
+    
+    
+    [_onLabel sizeToFit];
+    [_offLabel sizeToFit];
+
+    CGRect offFrame = _offLabel.frame;
+    offFrame.origin.x = _backgroundImageView.frame.size.width - offFrame.size.width - 10;
+    _offLabel.frame = offFrame;
 }
 
 #pragma mark -
@@ -84,7 +112,6 @@
 
 - (void)setBackgroundImage:(UIImage *)backgroundImage
 {
-    NSLog(@"set background");
     _backgroundImage = backgroundImage;
     [self setNeedsLayout];
 }
