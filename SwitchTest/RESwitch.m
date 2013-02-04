@@ -83,7 +83,7 @@
 
     CGRect onFrame = _onLabel.frame;
     onFrame.origin.x = 15 + _onLabelOffset.width;
-    onFrame.origin.y = 3 + _offLabelOffset.height;
+    onFrame.origin.y = 3 + _onLabelOffset.height;
     _onLabel.frame = onFrame;
     
     CGRect offFrame = _offLabel.frame;
