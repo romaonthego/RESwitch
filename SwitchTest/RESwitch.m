@@ -23,6 +23,8 @@
         _offLabelOffset = CGSizeMake(0, 0);
         _onLabelTextColor = [UIColor whiteColor];
         _offLabelTextColor = [UIColor colorWithRed:139/255.0 green:139/255.0 blue:139/255.0 alpha:1];
+        _onLabelTextShadowColor = [UIColor colorWithRed:0 green:102/255.0 blue:186/255.0 alpha:1];
+        _offLabelTextShadowColor = [UIColor clearColor];
         
         _containerView = [[UIView alloc] initWithFrame:self.bounds];
         _containerView.clipsToBounds = YES;
@@ -49,20 +51,12 @@
         
         _onLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 3, 20, 10)];
         _onLabel.text = NSLocalizedString(@"ON", @"ON");
-        _onLabel.font = [UIFont boldSystemFontOfSize:17];
         _onLabel.backgroundColor = [UIColor clearColor];
-        _onLabel.shadowColor = [UIColor colorWithRed:0 green:102/255.0 blue:186/255.0 alpha:1];
-        [_onLabel sizeToFit];
         [_backgroundView addSubview:_onLabel];
         
         _offLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 3, 20, 10)];
         _offLabel.text = NSLocalizedString(@"OFF", @"OFF");
-        _offLabel.font = [UIFont boldSystemFontOfSize:17];
         _offLabel.backgroundColor = [UIColor clearColor];
-        _offLabel.shadowOffset = CGSizeMake(0, -1);
-        _offLabel.shadowColor = [UIColor clearColor];
-
-        [_offLabel sizeToFit];
         [_backgroundView addSubview:_offLabel];
     }
     return self;
@@ -75,7 +69,6 @@
     _backgroundImageView.image = _backgroundImage;
     _overlayImageView.image = _overlayImage;
     _knobView.image = _knobImage;
-    
     
     _backgroundImageView.frame = CGRectMake(0, 0, _backgroundImage.size.width, _backgroundImage.size.height);
     CGRect frame = _backgroundView.frame;
@@ -100,10 +93,48 @@
     
     _onLabel.shadowOffset = _textShadowOffset;
     _onLabel.font = _font;
+    _onLabel.textColor = _onLabelTextColor;
+    _onLabel.shadowColor = _onLabelTextShadowColor;
+    
     _offLabel.shadowOffset = _textShadowOffset;
     _offLabel.font = _font;
-    _onLabel.textColor = _onLabelTextColor;
     _offLabel.textColor = _offLabelTextColor;
+    _offLabel.shadowColor = _offLabelTextShadowColor;
+    
+    [_onLabel sizeToFit];
+    [_offLabel sizeToFit];
+}
+
+- (CGFloat)offPosition
+{
+    return -self.frame.size.width + _knobImage.size.width - _knobOffset.width*2;
+}
+
+- (BOOL)isOn
+{
+    return _backgroundView.frame.origin.x == 0;
+}
+
+- (void)setOn:(BOOL)on animated:(BOOL)animated
+{
+    if (animated) {
+        [UIView animateWithDuration:0.25 animations:^{
+            [self setOn:on];
+        }];
+    } else {
+        [self setOn:on];
+    }
+}
+
+- (void)setOn:(BOOL)on
+{
+    CGRect frame = _backgroundView.frame;
+    frame.origin.x = on ? 0 : self.offPosition;
+    _backgroundView.frame = frame;
+    
+    CGRect knobFrame = _knobView.frame;
+    knobFrame.origin.x = frame.origin.x + self.frame.size.width - knobFrame.size.width + _knobOffset.width;
+    _knobView.frame = knobFrame;
 }
 
 #pragma mark -
@@ -178,6 +209,28 @@
     [self setNeedsLayout];
 }
 
+- (void)setTextShadowColor:(UIColor *)color forLabel:(RESwitchLabel)label
+{
+    if (label == RESwitchLabelOn)
+        _onLabelTextShadowColor = color;
+    
+    if (label == RESwitchLabelOff)
+        _offLabelTextShadowColor = color;
+    
+    [self setNeedsLayout];
+}
+
+- (void)setTitle:(NSString *)title forLabel:(RESwitchLabel)label
+{
+    if (label == RESwitchLabelOn)
+        _onLabel.text = title;
+    
+    if (label == RESwitchLabelOff)
+        _offLabel.text = title;
+    
+    [self setNeedsLayout];
+}
+
 #pragma mark -
 #pragma mark Gesture recognizers
 
@@ -196,8 +249,8 @@
     if (frame.origin.x > 0) {
         frame.origin.x = 0;
     }
-    if (frame.origin.x < -self.frame.size.width + _knobView.frame.size.width - _knobOffset.width*2)
-        frame.origin.x = -self.frame.size.width + _knobView.frame.size.width - _knobOffset.width*2;
+    if (frame.origin.x < self.offPosition)
+        frame.origin.x = self.offPosition;
     _backgroundView.frame = frame;
     
     CGRect knobFrame = _knobView.frame;
@@ -215,7 +268,7 @@
         if (frame.origin.x > -self.frame.size.width / 2) {
             frame.origin.x = 0;
         } else {
-            frame.origin.x = -self.frame.size.width + _knobView.frame.size.width - _knobOffset.width*2;
+            frame.origin.x = self.offPosition;
         }
         
         [UIView animateWithDuration:0.1 animations:^{
@@ -225,6 +278,8 @@
             knobFrame.origin.x = frame.origin.x + self.frame.size.width - knobFrame.size.width + _knobOffset.width;
             _knobView.frame = knobFrame;
         }];
+        
+        [self sendActionsForControlEvents:UIControlEventValueChanged];
     }
 }
 
@@ -236,7 +291,7 @@
         CGRect frame = _backgroundView.frame;
 
         if (frame.origin.x == 0) {
-            frame.origin.x = -self.frame.size.width + _knobView.frame.size.width - _knobOffset.width*2;
+            frame.origin.x = self.offPosition;
         } else {
             frame.origin.x = 0;
         }
@@ -247,6 +302,8 @@
             knobFrame.origin.x = frame.origin.x + self.frame.size.width - knobFrame.size.width + _knobOffset.width;
             _knobView.frame = knobFrame;
         }];
+        
+        [self sendActionsForControlEvents:UIControlEventValueChanged];
     }
 }
 

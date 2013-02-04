@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RESwitch.h"
 
-@interface RootViewController : UIViewController
+@interface RootViewController : UIViewController {
+    
+    
+    RESwitch *_switch2;
+}
 
 @end
