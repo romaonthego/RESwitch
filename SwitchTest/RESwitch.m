@@ -21,6 +21,8 @@
         _font = [UIFont boldSystemFontOfSize:17];
         _onLabelOffset = CGSizeMake(0, 0);
         _offLabelOffset = CGSizeMake(0, 0);
+        _onLabelTextColor = [UIColor whiteColor];
+        _offLabelTextColor = [UIColor colorWithRed:139/255.0 green:139/255.0 blue:139/255.0 alpha:1];
         
         _containerView = [[UIView alloc] initWithFrame:self.bounds];
         _containerView.clipsToBounds = YES;
@@ -50,7 +52,6 @@
         _onLabel.font = [UIFont boldSystemFontOfSize:17];
         _onLabel.backgroundColor = [UIColor clearColor];
         _onLabel.shadowColor = [UIColor colorWithRed:0 green:102/255.0 blue:186/255.0 alpha:1];
-        _onLabel.textColor = [UIColor whiteColor];
         [_onLabel sizeToFit];
         [_backgroundView addSubview:_onLabel];
         
@@ -60,7 +61,7 @@
         _offLabel.backgroundColor = [UIColor clearColor];
         _offLabel.shadowOffset = CGSizeMake(0, -1);
         _offLabel.shadowColor = [UIColor clearColor];
-        _offLabel.textColor = [UIColor colorWithRed:139/255.0 green:139/255.0 blue:139/255.0 alpha:1];
+
         [_offLabel sizeToFit];
         [_backgroundView addSubview:_offLabel];
     }
@@ -101,6 +102,8 @@
     _onLabel.font = _font;
     _offLabel.shadowOffset = _textShadowOffset;
     _offLabel.font = _font;
+    _onLabel.textColor = _onLabelTextColor;
+    _offLabel.textColor = _offLabelTextColor;
 }
 
 #pragma mark -
