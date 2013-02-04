@@ -16,8 +16,11 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _knobXOffset = 0;
-        _knobYOffset = 0;
+        _knobOffset = CGSizeMake(0, 0);
+        _textShadowOffset = CGSizeMake(0, -1);
+        _font = [UIFont boldSystemFontOfSize:17];
+        _onLabelOffset = CGSizeMake(0, 0);
+        _offLabelOffset = CGSizeMake(0, 0);
         
         _containerView = [[UIView alloc] initWithFrame:self.bounds];
         _containerView.clipsToBounds = YES;
@@ -46,7 +49,6 @@
         _onLabel.text = NSLocalizedString(@"ON", @"ON");
         _onLabel.font = [UIFont boldSystemFontOfSize:17];
         _onLabel.backgroundColor = [UIColor clearColor];
-        _onLabel.shadowOffset = CGSizeMake(0, -1);
         _onLabel.shadowColor = [UIColor colorWithRed:0 green:102/255.0 blue:186/255.0 alpha:1];
         _onLabel.textColor = [UIColor whiteColor];
         [_onLabel sizeToFit];
@@ -65,23 +67,6 @@
     return self;
 }
 
-- (void)setCornerRadius:(CGFloat)radius
-{
-    _containerView.layer.cornerRadius = radius;
-    _containerView.layer.masksToBounds = YES;
-}
-
-- (CGFloat)cornerRadius
-{
-    return _containerView.layer.cornerRadius;
-}
-
-- (void)setKnobOffsetX:(CGFloat)x y:(CGFloat)y
-{
-    _knobXOffset = x;
-    _knobYOffset = y;
-}
-
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -94,21 +79,49 @@
     _backgroundImageView.frame = CGRectMake(0, 0, _backgroundImage.size.width, _backgroundImage.size.height);
     CGRect frame = _backgroundView.frame;
     CGRect knobFrame = CGRectMake(0, 0, _knobImage.size.width, _knobImage.size.height);
-    knobFrame.origin.x = frame.origin.x + self.frame.size.width - knobFrame.size.width + _knobXOffset;
-    knobFrame.origin.y = _knobYOffset;
+    knobFrame.origin.x = frame.origin.x + self.frame.size.width - knobFrame.size.width + _knobOffset.width;
+    knobFrame.origin.y = _knobOffset.height;
     _knobView.frame = knobFrame;
     
     
     [_onLabel sizeToFit];
     [_offLabel sizeToFit];
 
+    CGRect onFrame = _onLabel.frame;
+    onFrame.origin.x = 15 + _onLabelOffset.width;
+    onFrame.origin.y = 3 + _offLabelOffset.height;
+    _onLabel.frame = onFrame;
+    
     CGRect offFrame = _offLabel.frame;
-    offFrame.origin.x = _backgroundImageView.frame.size.width - offFrame.size.width - 10;
+    offFrame.origin.x = _backgroundImageView.frame.size.width - offFrame.size.width - 10 + _offLabelOffset.width;
+    offFrame.origin.y = 3 + _offLabelOffset.height;
     _offLabel.frame = offFrame;
+    
+    _onLabel.shadowOffset = _textShadowOffset;
+    _onLabel.font = _font;
+    _offLabel.shadowOffset = _textShadowOffset;
+    _offLabel.font = _font;
 }
 
 #pragma mark -
 #pragma mark Apperance
+
+- (void)setCornerRadius:(CGFloat)radius
+{
+    _containerView.layer.cornerRadius = radius;
+    _containerView.layer.masksToBounds = YES;
+}
+
+- (CGFloat)cornerRadius
+{
+    return _containerView.layer.cornerRadius;
+}
+
+- (void)setKnobOffset:(CGSize)knobOffset
+{
+    _knobOffset = knobOffset;
+    [self setNeedsLayout];
+}
 
 - (void)setBackgroundImage:(UIImage *)backgroundImage
 {
@@ -134,6 +147,34 @@
     [self setNeedsLayout];
 }
 
+- (void)setTextShadowOffset:(CGSize)textShadowOffset
+{
+    _textShadowOffset = textShadowOffset;
+    [self setNeedsLayout];
+}
+
+- (void)setTextOffset:(CGSize)offset forLabel:(RESwitchLabel)label
+{
+    if (label == RESwitchLabelOn)
+        _onLabelOffset = offset;
+    
+    if (label == RESwitchLabelOff)
+        _offLabelOffset = offset;
+    
+    [self setNeedsLayout];
+}
+
+- (void)setTextColor:(UIColor *)color forLabel:(RESwitchLabel)label
+{
+    if (label == RESwitchLabelOn)
+        _onLabelTextColor = color;
+    
+    if (label == RESwitchLabelOff)
+        _offLabelTextColor = color;
+    
+    [self setNeedsLayout];
+}
+
 #pragma mark -
 #pragma mark Gesture recognizers
 
@@ -152,12 +193,12 @@
     if (frame.origin.x > 0) {
         frame.origin.x = 0;
     }
-    if (frame.origin.x < -self.frame.size.width + _knobView.frame.size.width - _knobXOffset*2)
-        frame.origin.x = -self.frame.size.width + _knobView.frame.size.width - _knobXOffset*2;
+    if (frame.origin.x < -self.frame.size.width + _knobView.frame.size.width - _knobOffset.width*2)
+        frame.origin.x = -self.frame.size.width + _knobView.frame.size.width - _knobOffset.width*2;
     _backgroundView.frame = frame;
     
     CGRect knobFrame = _knobView.frame;
-    knobFrame.origin.x = frame.origin.x + self.frame.size.width - knobFrame.size.width + _knobXOffset;
+    knobFrame.origin.x = frame.origin.x + self.frame.size.width - knobFrame.size.width + _knobOffset.width;
     _knobView.frame = knobFrame;
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
@@ -171,14 +212,14 @@
         if (frame.origin.x > -self.frame.size.width / 2) {
             frame.origin.x = 0;
         } else {
-            frame.origin.x = -self.frame.size.width + _knobView.frame.size.width - _knobXOffset*2;
+            frame.origin.x = -self.frame.size.width + _knobView.frame.size.width - _knobOffset.width*2;
         }
         
         [UIView animateWithDuration:0.1 animations:^{
             _backgroundView.frame = frame;
             
             CGRect knobFrame = _knobView.frame;
-            knobFrame.origin.x = frame.origin.x + self.frame.size.width - knobFrame.size.width + _knobXOffset;
+            knobFrame.origin.x = frame.origin.x + self.frame.size.width - knobFrame.size.width + _knobOffset.width;
             _knobView.frame = knobFrame;
         }];
     }
@@ -192,7 +233,7 @@
         CGRect frame = _backgroundView.frame;
 
         if (frame.origin.x == 0) {
-            frame.origin.x = -self.frame.size.width + _knobView.frame.size.width - _knobXOffset*2;
+            frame.origin.x = -self.frame.size.width + _knobView.frame.size.width - _knobOffset.width*2;
         } else {
             frame.origin.x = 0;
         }
@@ -200,7 +241,7 @@
             _backgroundView.frame = frame;
 
             CGRect knobFrame = _knobView.frame;
-            knobFrame.origin.x = frame.origin.x + self.frame.size.width - knobFrame.size.width + _knobXOffset;
+            knobFrame.origin.x = frame.origin.x + self.frame.size.width - knobFrame.size.width + _knobOffset.width;
             _knobView.frame = knobFrame;
         }];
     }
