@@ -21,7 +21,11 @@
     CGFloat _knobYOffset;
 }
 
-- (id)initWithFrame:(CGRect)frame backgroundImage:(UIImage *)backgroundImage overlayImage:(UIImage *)overlayImage knobImage:(UIImage *)knobImage highlightedKnobImage:(UIImage *)highlightedKnobImage;
+@property (strong, nonatomic) UIImage *backgroundImage UI_APPEARANCE_SELECTOR;
+@property (strong, nonatomic) UIImage *overlayImage UI_APPEARANCE_SELECTOR;
+@property (strong, nonatomic) UIImage *knobImage UI_APPEARANCE_SELECTOR;
+@property (strong, nonatomic) UIImage *highlightedKnobImage UI_APPEARANCE_SELECTOR;
+
 - (CGFloat)cornerRadius;
 - (void)setCornerRadius:(CGFloat)radius;
 - (void)setKnobOffsetX:(CGFloat)x y:(CGFloat)y;

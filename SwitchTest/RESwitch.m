@@ -12,7 +12,7 @@
 
 @implementation RESwitch
 
-- (id)initWithFrame:(CGRect)frame backgroundImage:(UIImage *)backgroundImage overlayImage:(UIImage *)overlayImage knobImage:(UIImage *)knobImage highlightedKnobImage:(UIImage *)highlightedKnobImage
+- (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -27,20 +27,13 @@
         _backgroundView.userInteractionEnabled = YES;
         [_containerView addSubview:_backgroundView];
         
-       // UIImage *backgroundImage = backgroundImage;// [UIImage imageNamed:@"round-switch-track"];
-        _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height)];
-        //_backgroundImageView.image = [UIImage imageNamed:@"Switch_Background"];
-        _backgroundImageView.image = backgroundImage;
+        _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectNull];
         [_backgroundView addSubview:_backgroundImageView];
         
         _overlayImageView = [[UIImageView alloc] initWithFrame:self.bounds];
-        _overlayImageView.image = overlayImage;// [UIImage imageNamed:@"round-switch-overlay"];
         [self addSubview:_overlayImageView];
         
-      // UIImage *knobImage = [UIImage imageNamed:@"round-switch-thumb"];
-        // [UIImage imageNamed:@"Switch_Knob"];
-        _knobView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, knobImage.size.width, knobImage.size.height)];
-        _knobView.image = knobImage;
+        _knobView = [[UIImageView alloc] initWithFrame:CGRectNull];
         [self addSubview:_knobView];
         
         UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognizerDidChange:)];
@@ -72,12 +65,46 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+
+    _backgroundImageView.image = _backgroundImage;
+    _overlayImageView.image = _overlayImage;
+    _knobView.image = _knobImage;
     
+    
+    _backgroundImageView.frame = CGRectMake(0, 0, _backgroundImage.size.width, _backgroundImage.size.height);
     CGRect frame = _backgroundView.frame;
-    CGRect knobFrame = _knobView.frame;
+    CGRect knobFrame = CGRectMake(0, 0, _knobImage.size.width, _knobImage.size.height);
     knobFrame.origin.x = frame.origin.x + self.frame.size.width - knobFrame.size.width + _knobXOffset;
     knobFrame.origin.y = _knobYOffset;
     _knobView.frame = knobFrame;
+}
+
+#pragma mark -
+#pragma mark Apperance
+
+- (void)setBackgroundImage:(UIImage *)backgroundImage
+{
+    NSLog(@"set background");
+    _backgroundImage = backgroundImage;
+    [self setNeedsLayout];
+}
+
+- (void)setOverlayImage:(UIImage *)overlayImage
+{
+    _overlayImage = overlayImage;
+    [self setNeedsLayout];
+}
+
+- (void)setKnobImage:(UIImage *)knobImage
+{
+    _knobImage = knobImage;
+    [self setNeedsLayout];
+}
+
+- (void)setHighlightedKnobImage:(UIImage *)highlightedKnobImage
+{
+    _highlightedKnobImage = highlightedKnobImage;
+    [self setNeedsLayout];
 }
 
 #pragma mark -
@@ -106,7 +133,14 @@
     knobFrame.origin.x = frame.origin.x + self.frame.size.width - knobFrame.size.width + _knobXOffset;
     _knobView.frame = knobFrame;
     
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        if (_highlightedKnobImage)
+            _knobView.image = _highlightedKnobImage;
+    }
+    
     if (recognizer.state == UIGestureRecognizerStateEnded) {
+        _knobView.image = _knobImage;
+        
         if (frame.origin.x > -self.frame.size.width / 2) {
             frame.origin.x = 0;
         } else {
@@ -123,19 +157,37 @@
     }
 }
 
-- (void)tapGestureRecognizerDidChange:(UIPanGestureRecognizer *)recognizer
+- (void)tapGestureRecognizerDidChange:(UITapGestureRecognizer *)recognizer
 {
-    /* if (recognizer.state == UIGestureRecognizerStateEnded) {
-     CGRect frame = _backgroundView.frame;
-     if (frame.origin.x == 0) {
-     frame.origin.x = -self.frame.size.width;
-     } else {
-     frame.origin.x = 0;
-     }
-     [UIView animateWithDuration:0.15 animations:^{
-     _backgroundView.frame = frame;
-     }];
-     }*/
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        _knobView.image = _knobImage;
+
+        CGRect frame = _backgroundView.frame;
+
+        if (frame.origin.x == 0) {
+            frame.origin.x = -self.frame.size.width + _knobView.frame.size.width - _knobXOffset*2;
+        } else {
+            frame.origin.x = 0;
+        }
+        [UIView animateWithDuration:0.15 animations:^{
+            _backgroundView.frame = frame;
+
+            CGRect knobFrame = _knobView.frame;
+            knobFrame.origin.x = frame.origin.x + self.frame.size.width - knobFrame.size.width + _knobXOffset;
+            _knobView.frame = knobFrame;
+        }];
+    }
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (_highlightedKnobImage)
+        _knobView.image = _highlightedKnobImage;
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    _knobView.image = _knobImage;
 }
 
 @end

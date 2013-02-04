@@ -18,23 +18,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[RESwitch appearance] setBackgroundImage:[UIImage imageNamed:@"round-switch-track"]];
+    [[RESwitch appearance] setOverlayImage:[UIImage imageNamed:@"round-switch-overlay"]];
+    [[RESwitch appearance] setKnobImage:[UIImage imageNamed:@"round-switch-thumb"]];
+    [[RESwitch appearance] setHighlightedKnobImage:[UIImage imageNamed:@"round-switch-thumb-highlight"]];
 	
-    RESwitch *switchView = [[RESwitch alloc] initWithFrame:CGRectMake(30, 100, 76, 28)
-                                            backgroundImage:[UIImage imageNamed:@"Switch_Background"]
-                                               overlayImage:nil
-                                                  knobImage:[UIImage imageNamed:@"Switch_Knob"]
-                                       highlightedKnobImage:[UIImage imageNamed:@"Switch_Knob"]];
-   // switchView2.cornerRadius = 14;
-   // [switchView2 setKnobOffsetX:4 y:-3];
+    RESwitch *switchView = [[RESwitch alloc] initWithFrame:CGRectMake(30, 100, 76, 28)];
+    [switchView setBackgroundImage:[UIImage imageNamed:@"Switch_Background"]];
+    [switchView setKnobImage:[UIImage imageNamed:@"Switch_Knob"]];
+    [switchView setOverlayImage:nil];
+    [switchView setHighlightedKnobImage:nil];
     [self.view addSubview:switchView];
     
-    
-    
-    RESwitch *switchView2 = [[RESwitch alloc] initWithFrame:CGRectMake(30, 100, 76, 28)
-                                            backgroundImage:[UIImage imageNamed:@"round-switch-track"]
-                                               overlayImage:[UIImage imageNamed:@"round-switch-overlay"]
-                                                  knobImage:[UIImage imageNamed:@"round-switch-thumb"]
-                                       highlightedKnobImage:[UIImage imageNamed:@"round-switch-thumb"]];
+    RESwitch *switchView2 = [[RESwitch alloc] initWithFrame:CGRectMake(30, 200, 76, 28)];
     switchView2.cornerRadius = 14;
     [switchView2 setKnobOffsetX:4 y:-3];
     [self.view addSubview:switchView2];
