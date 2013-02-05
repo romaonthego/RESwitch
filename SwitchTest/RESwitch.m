@@ -65,13 +65,17 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    
+    CGRect frame = _backgroundView.frame;
+    frame.origin.x = _isOn ? 0 : self.offPosition;
+    _backgroundView.frame = frame;
 
     _backgroundImageView.image = _backgroundImage;
     _overlayImageView.image = _overlayImage;
     _knobView.image = _knobImage;
     
     _backgroundImageView.frame = CGRectMake(0, 0, _backgroundImage.size.width, _backgroundImage.size.height);
-    CGRect frame = _backgroundView.frame;
+    frame = _backgroundView.frame;
     CGRect knobFrame = CGRectMake(0, 0, _knobImage.size.width, _knobImage.size.height);
     knobFrame.origin.x = frame.origin.x + self.frame.size.width - knobFrame.size.width + _knobOffset.width;
     knobFrame.origin.y = _knobOffset.height;
@@ -118,8 +122,15 @@
 - (void)setOn:(BOOL)on animated:(BOOL)animated
 {
     if (animated) {
+        _isOn = on;
         [UIView animateWithDuration:0.25 animations:^{
-            [self setOn:on];
+            CGRect frame = _backgroundView.frame;
+            frame.origin.x = on ? 0 : self.offPosition;
+            _backgroundView.frame = frame;
+            
+            CGRect knobFrame = _knobView.frame;
+            knobFrame.origin.x = frame.origin.x + self.frame.size.width - knobFrame.size.width + _knobOffset.width;
+            _knobView.frame = knobFrame;
         }];
     } else {
         [self setOn:on];
@@ -128,13 +139,8 @@
 
 - (void)setOn:(BOOL)on
 {
-    CGRect frame = _backgroundView.frame;
-    frame.origin.x = on ? 0 : self.offPosition;
-    _backgroundView.frame = frame;
-    
-    CGRect knobFrame = _knobView.frame;
-    knobFrame.origin.x = frame.origin.x + self.frame.size.width - knobFrame.size.width + _knobOffset.width;
-    _knobView.frame = knobFrame;
+    _isOn = on;
+    [self setNeedsLayout];
 }
 
 #pragma mark -

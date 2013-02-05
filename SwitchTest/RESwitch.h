@@ -32,6 +32,8 @@ typedef enum _RESwitchLabel {
     UIColor *_offLabelTextColor;
     UIColor *_onLabelTextShadowColor;
     UIColor *_offLabelTextShadowColor;
+    
+    BOOL _isOn;
 }
 
 @property (strong, nonatomic) UIImage *backgroundImage UI_APPEARANCE_SELECTOR;
