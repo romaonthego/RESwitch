@@ -19,10 +19,10 @@
 {
     [super viewDidLoad];
     
-    [[RESwitch appearance] setBackgroundImage:[UIImage imageNamed:@"round-switch-track"]];
-    [[RESwitch appearance] setOverlayImage:[UIImage imageNamed:@"round-switch-overlay"]];
-    [[RESwitch appearance] setKnobImage:[UIImage imageNamed:@"round-switch-thumb"]];
-    [[RESwitch appearance] setHighlightedKnobImage:[UIImage imageNamed:@"round-switch-thumb-highlight"]];
+    [[RESwitch appearance] setBackgroundImage:[UIImage imageNamed:@"RESwitch.bundle/Background"]];
+    [[RESwitch appearance] setOverlayImage:[UIImage imageNamed:@"RESwitch.bundle/Overlay"]];
+    [[RESwitch appearance] setKnobImage:[UIImage imageNamed:@"RESwitch.bundle/Knob"]];
+    [[RESwitch appearance] setHighlightedKnobImage:[UIImage imageNamed:@"RESwitch.bundle/Knob_Highlighted"]];
     [[RESwitch appearance] setKnobOffset:CGSizeMake(4, -3)];
     [[RESwitch appearance] setCornerRadius:14];
     [[RESwitch appearance] setFont:[UIFont boldSystemFontOfSize:17]];
@@ -42,6 +42,7 @@
     [switchView setTextOffset:CGSizeMake(3, 2) forLabel:RESwitchLabelOff];
     [switchView setTextColor:[UIColor blackColor] forLabel:RESwitchLabelOn];
     [switchView setTextColor:[UIColor colorWithRed:143/255.0 green:19/255.0 blue:24/255.0 alpha:1] forLabel:RESwitchLabelOff];
+    
     switchView.layer.cornerRadius = 4;
     switchView.layer.borderColor = [UIColor colorWithRed:224/255.0 green:36/255.0 blue:24/255.0 alpha:1].CGColor;
     switchView.layer.borderWidth = 2;

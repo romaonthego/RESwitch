@@ -17,13 +17,10 @@
 		30A93AEF16C010630031AC39 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30A93AEE16C010630031AC39 /* Default@2x.png */; };
 		30A93AF116C010630031AC39 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30A93AF016C010630031AC39 /* Default-568h@2x.png */; };
 		30A93AF916C010BE0031AC39 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A93AF816C010BE0031AC39 /* RootViewController.m */; };
-		30A93AFC16C010F40031AC39 /* Switch_Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30A93AFA16C010F40031AC39 /* Switch_Background@2x.png */; };
-		30A93AFD16C010F40031AC39 /* Switch_Knob@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30A93AFB16C010F40031AC39 /* Switch_Knob@2x.png */; };
-		30A93B0016C011080031AC39 /* RESwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A93AFF16C011080031AC39 /* RESwitch.m */; };
-		30A93B0316C018970031AC39 /* round-switch-thumb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30A93B0116C018970031AC39 /* round-switch-thumb@2x.png */; };
-		30A93B0416C018970031AC39 /* round-switch-track@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30A93B0216C018970031AC39 /* round-switch-track@2x.png */; };
-		30A93B0616C020800031AC39 /* round-switch-overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30A93B0516C020800031AC39 /* round-switch-overlay@2x.png */; };
-		30A93B0816C0257C0031AC39 /* round-switch-thumb-highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30A93B0716C0257C0031AC39 /* round-switch-thumb-highlight@2x.png */; };
+		30A93B1D16C176660031AC39 /* RESwitch.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30A93B1A16C176660031AC39 /* RESwitch.bundle */; };
+		30A93B1E16C176660031AC39 /* RESwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A93B1C16C176660031AC39 /* RESwitch.m */; };
+		30A93B2116C176770031AC39 /* Switch_Background_Red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30A93B1F16C176770031AC39 /* Switch_Background_Red@2x.png */; };
+		30A93B2216C176770031AC39 /* Switch_Knob_Red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30A93B2016C176770031AC39 /* Switch_Knob_Red@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,14 +39,11 @@
 		30A93AF016C010630031AC39 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		30A93AF716C010BE0031AC39 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		30A93AF816C010BE0031AC39 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		30A93AFA16C010F40031AC39 /* Switch_Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Switch_Background@2x.png"; sourceTree = "<group>"; };
-		30A93AFB16C010F40031AC39 /* Switch_Knob@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Switch_Knob@2x.png"; sourceTree = "<group>"; };
-		30A93AFE16C011080031AC39 /* RESwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESwitch.h; sourceTree = "<group>"; };
-		30A93AFF16C011080031AC39 /* RESwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESwitch.m; sourceTree = "<group>"; };
-		30A93B0116C018970031AC39 /* round-switch-thumb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "round-switch-thumb@2x.png"; sourceTree = "<group>"; };
-		30A93B0216C018970031AC39 /* round-switch-track@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "round-switch-track@2x.png"; sourceTree = "<group>"; };
-		30A93B0516C020800031AC39 /* round-switch-overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "round-switch-overlay@2x.png"; sourceTree = "<group>"; };
-		30A93B0716C0257C0031AC39 /* round-switch-thumb-highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "round-switch-thumb-highlight@2x.png"; sourceTree = "<group>"; };
+		30A93B1A16C176660031AC39 /* RESwitch.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RESwitch.bundle; sourceTree = "<group>"; };
+		30A93B1B16C176660031AC39 /* RESwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESwitch.h; sourceTree = "<group>"; };
+		30A93B1C16C176660031AC39 /* RESwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESwitch.m; sourceTree = "<group>"; };
+		30A93B1F16C176770031AC39 /* Switch_Background_Red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Switch_Background_Red@2x.png"; sourceTree = "<group>"; };
+		30A93B2016C176770031AC39 /* Switch_Knob_Red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Switch_Knob_Red@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +63,7 @@
 		30A93ACE16C010630031AC39 = {
 			isa = PBXGroup;
 			children = (
+				30A93B1916C176660031AC39 /* RESwitch */,
 				30A93AE016C010630031AC39 /* SwitchTest */,
 				30A93AD916C010630031AC39 /* Frameworks */,
 				30A93AD816C010630031AC39 /* Products */,
@@ -100,8 +95,6 @@
 				30A93AEA16C010630031AC39 /* AppDelegate.m */,
 				30A93AF716C010BE0031AC39 /* RootViewController.h */,
 				30A93AF816C010BE0031AC39 /* RootViewController.m */,
-				30A93AFE16C011080031AC39 /* RESwitch.h */,
-				30A93AFF16C011080031AC39 /* RESwitch.m */,
 				30A93AE116C010630031AC39 /* Supporting Files */,
 			);
 			path = SwitchTest;
@@ -110,12 +103,8 @@
 		30A93AE116C010630031AC39 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				30A93B0116C018970031AC39 /* round-switch-thumb@2x.png */,
-				30A93B0216C018970031AC39 /* round-switch-track@2x.png */,
-				30A93AFA16C010F40031AC39 /* Switch_Background@2x.png */,
-				30A93B0716C0257C0031AC39 /* round-switch-thumb-highlight@2x.png */,
-				30A93B0516C020800031AC39 /* round-switch-overlay@2x.png */,
-				30A93AFB16C010F40031AC39 /* Switch_Knob@2x.png */,
+				30A93B1F16C176770031AC39 /* Switch_Background_Red@2x.png */,
+				30A93B2016C176770031AC39 /* Switch_Knob_Red@2x.png */,
 				30A93AE216C010630031AC39 /* SwitchTest-Info.plist */,
 				30A93AE316C010630031AC39 /* InfoPlist.strings */,
 				30A93AE616C010630031AC39 /* main.m */,
@@ -125,6 +114,16 @@
 				30A93AF016C010630031AC39 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		30A93B1916C176660031AC39 /* RESwitch */ = {
+			isa = PBXGroup;
+			children = (
+				30A93B1A16C176660031AC39 /* RESwitch.bundle */,
+				30A93B1B16C176660031AC39 /* RESwitch.h */,
+				30A93B1C16C176660031AC39 /* RESwitch.m */,
+			);
+			path = RESwitch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,12 +181,9 @@
 				30A93AED16C010630031AC39 /* Default.png in Resources */,
 				30A93AEF16C010630031AC39 /* Default@2x.png in Resources */,
 				30A93AF116C010630031AC39 /* Default-568h@2x.png in Resources */,
-				30A93AFC16C010F40031AC39 /* Switch_Background@2x.png in Resources */,
-				30A93AFD16C010F40031AC39 /* Switch_Knob@2x.png in Resources */,
-				30A93B0316C018970031AC39 /* round-switch-thumb@2x.png in Resources */,
-				30A93B0416C018970031AC39 /* round-switch-track@2x.png in Resources */,
-				30A93B0616C020800031AC39 /* round-switch-overlay@2x.png in Resources */,
-				30A93B0816C0257C0031AC39 /* round-switch-thumb-highlight@2x.png in Resources */,
+				30A93B1D16C176660031AC39 /* RESwitch.bundle in Resources */,
+				30A93B2116C176770031AC39 /* Switch_Background_Red@2x.png in Resources */,
+				30A93B2216C176770031AC39 /* Switch_Knob_Red@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +197,7 @@
 				30A93AE716C010630031AC39 /* main.m in Sources */,
 				30A93AEB16C010630031AC39 /* AppDelegate.m in Sources */,
 				30A93AF916C010BE0031AC39 /* RootViewController.m in Sources */,
-				30A93B0016C011080031AC39 /* RESwitch.m in Sources */,
+				30A93B1E16C176660031AC39 /* RESwitch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
