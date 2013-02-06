@@ -49,8 +49,6 @@ TO DO
 
 TO DO
 
-## Known Issues
-
 ## Contact
 
 Roman Efimov
