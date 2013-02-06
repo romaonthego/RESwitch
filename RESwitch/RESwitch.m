@@ -12,6 +12,22 @@
 
 @implementation RESwitch
 
++ (void)initialize
+{
+    [super initialize];
+    
+    [[RESwitch appearance] setBackgroundImage:[UIImage imageNamed:@"RESwitch.bundle/Background"]];
+    [[RESwitch appearance] setOverlayImage:[UIImage imageNamed:@"RESwitch.bundle/Overlay"]];
+    [[RESwitch appearance] setKnobImage:[UIImage imageNamed:@"RESwitch.bundle/Knob"]];
+    [[RESwitch appearance] setHighlightedKnobImage:[UIImage imageNamed:@"RESwitch.bundle/Knob_Highlighted"]];
+    [[RESwitch appearance] setKnobOffset:CGSizeMake(4, -3)];
+    [[RESwitch appearance] setCornerRadius:14];
+    [[RESwitch appearance] setFont:[UIFont boldSystemFontOfSize:17]];
+    [[RESwitch appearance] setTextOffset:CGSizeMake(0, 0) forLabel:RESwitchLabelOn];
+    [[RESwitch appearance] setTextOffset:CGSizeMake(0, 0) forLabel:RESwitchLabelOff];
+    [[RESwitch appearance] setTextShadowOffset:CGSizeMake(0, -1)];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
