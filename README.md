@@ -10,10 +10,6 @@ Open source alternative to `UISwitch`, customizable via `UIAppearance`.
 * iOS 5.0 or higher
 * ARC
 
-## Demo
-
-Build and run the `RESwitchExample` project in Xcode to see `RESwitch` in action.
-
 ## Installation
 
 The recommended approach for installating RESwitch is via the [CocoaPods](http://cocoapods.org/) package manager, as it provides flexible dependency management and dead simple installation.
