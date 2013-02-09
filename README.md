@@ -43,7 +43,27 @@ Add `#include "RESwitch.h"` to the top of classes that will use it.
 
 ## Example Usage
 
-TO DO
+``` objective-c
+ RESwitch *switchView = [[RESwitch alloc] initWithFrame:CGRectMake(30, 100, 76, 28)];
+[switchView setBackgroundImage:[UIImage imageNamed:@"Switch_Background"]];
+[switchView setKnobImage:[UIImage imageNamed:@"Switch_Knob"]];
+[switchView setOverlayImage:nil];
+[switchView setHighlightedKnobImage:nil];
+[switchView setCornerRadius:0];
+[switchView setKnobOffset:CGSizeMake(0, 0)];
+[switchView setTextShadowOffset:CGSizeMake(0, 0)];
+[switchView setFont:[UIFont boldSystemFontOfSize:14]];
+[switchView setTextOffset:CGSizeMake(3, 2) forLabel:RESwitchLabelOff];
+[switchView setTextColor:[UIColor blackColor] forLabel:RESwitchLabelOn];
+[switchView setTextColor:[UIColor colorWithRed:143/255.0 green:19/255.0 blue:24/255.0 alpha:1] forLabel:RESwitchLabelOff];
+
+switchView.layer.cornerRadius = 4;
+switchView.layer.borderColor = [UIColor colorWithRed:224/255.0 green:36/255.0 blue:24/255.0 alpha:1].CGColor;
+switchView.layer.borderWidth = 2;
+switchView.layer.masksToBounds = YES;
+[switchView addTarget:self action:@selector(switchViewChanged:) forControlEvents:UIControlEventValueChanged];
+[self.view addSubview:switchView];
+```
 
 ## Customization
 
