@@ -48,7 +48,6 @@ TO DO
 ## Customization
 
 You can customize the appearance of all switches using the appearance proxy (`[RESwitch appearance]`), or just of a single switch.
-
 Use the following properties and tasks to customize `RESwitch`:
 
 ``` objective-c
@@ -68,7 +67,7 @@ Use the following properties and tasks to customize `RESwitch`:
 - (void)setTitle:(NSString *)title forLabel:(RESwitchLabel)label;
 ```
 
-For example, this is how default appearance of `RESwitch` is set:
+For example, this is how the default appearance of `RESwitch` is set:
 
 ``` objective-c
 [[RESwitch appearance] setBackgroundImage:[UIImage imageNamed:@"RESwitch.bundle/Background"]];
