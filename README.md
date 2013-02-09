@@ -1,6 +1,6 @@
 # RESwitch
 
-Open source alternative to `UISwitch`, customizable via `UIAppearance`.
+Open source alternative to `UISwitch`, customizable via `UIAppearance` protocol.
 
 ![Screenshot of RESwitch](https://github.com/romaonthego/RESwitch/raw/master/Screenshot.png "RESwitch Screenshot")
 
