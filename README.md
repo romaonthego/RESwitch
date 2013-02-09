@@ -45,6 +45,11 @@ Add `#include "RESwitch.h"` to the top of classes that will use it.
 
 ``` objective-c
 RESwitch *switchView = [[RESwitch alloc] initWithFrame:CGRectMake(30, 100, 76, 28)];
+[switchView addTarget:self action:@selector(switchViewChanged:) forControlEvents:UIControlEventValueChanged];
+[self.view addSubview:switchView];
+
+// Now let's customize it
+//
 [switchView setBackgroundImage:[UIImage imageNamed:@"Switch_Background"]];
 [switchView setKnobImage:[UIImage imageNamed:@"Switch_Knob"]];
 [switchView setOverlayImage:nil];
@@ -61,8 +66,6 @@ switchView.layer.cornerRadius = 4;
 switchView.layer.borderColor = [UIColor colorWithRed:224/255.0 green:36/255.0 blue:24/255.0 alpha:1].CGColor;
 switchView.layer.borderWidth = 2;
 switchView.layer.masksToBounds = YES;
-[switchView addTarget:self action:@selector(switchViewChanged:) forControlEvents:UIControlEventValueChanged];
-[self.view addSubview:switchView];
 ```
 
 ## Customization
