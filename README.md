@@ -44,7 +44,7 @@ Add `#include "RESwitch.h"` to the top of classes that will use it.
 ## Example Usage
 
 ``` objective-c
- RESwitch *switchView = [[RESwitch alloc] initWithFrame:CGRectMake(30, 100, 76, 28)];
+RESwitch *switchView = [[RESwitch alloc] initWithFrame:CGRectMake(30, 100, 76, 28)];
 [switchView setBackgroundImage:[UIImage imageNamed:@"Switch_Background"]];
 [switchView setKnobImage:[UIImage imageNamed:@"Switch_Knob"]];
 [switchView setOverlayImage:nil];
