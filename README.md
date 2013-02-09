@@ -47,7 +47,41 @@ TO DO
 
 ## Customization
 
-TO DO
+You can customize the appearance of all switches using the appearance proxy (`[RESwitch appearance]`), or just of a single switch.
+
+Use the following properties and tasks to customize `RESwitch`:
+
+``` objective-c
+@property (strong, nonatomic) UIImage *backgroundImage;
+@property (strong, nonatomic) UIImage *overlayImage;
+@property (strong, nonatomic) UIImage *knobImage;
+@property (strong, nonatomic) UIImage *highlightedKnobImage;
+@property (assign, readwrite, nonatomic) CGSize knobOffset;
+@property (assign, readwrite, nonatomic) CGSize textShadowOffset;
+@property (strong, nonatomic) UIFont *font;
+
+- (CGFloat)cornerRadius;
+- (void)setCornerRadius:(CGFloat)radius;
+- (void)setTextOffset:(CGSize)offset forLabel:(RESwitchLabel)label;
+- (void)setTextColor:(UIColor *)color forLabel:(RESwitchLabel)label;
+- (void)setTextShadowColor:(UIColor *)color forLabel:(RESwitchLabel)label;
+- (void)setTitle:(NSString *)title forLabel:(RESwitchLabel)label;
+```
+
+For example, this is how default appearance of `RESwitch` is set:
+
+``` objective-c
+[[RESwitch appearance] setBackgroundImage:[UIImage imageNamed:@"RESwitch.bundle/Background"]];
+[[RESwitch appearance] setOverlayImage:[UIImage imageNamed:@"RESwitch.bundle/Overlay"]];
+[[RESwitch appearance] setKnobImage:[UIImage imageNamed:@"RESwitch.bundle/Knob"]];
+[[RESwitch appearance] setHighlightedKnobImage:[UIImage imageNamed:@"RESwitch.bundle/Knob_Highlighted"]];
+[[RESwitch appearance] setKnobOffset:CGSizeMake(4, -3)];
+[[RESwitch appearance] setCornerRadius:14];
+[[RESwitch appearance] setFont:[UIFont boldSystemFontOfSize:17]];
+[[RESwitch appearance] setTextOffset:CGSizeMake(0, 0) forLabel:RESwitchLabelOn];
+[[RESwitch appearance] setTextOffset:CGSizeMake(0, 0) forLabel:RESwitchLabelOff];
+[[RESwitch appearance] setTextShadowOffset:CGSizeMake(0, -1)];
+```
 
 ## Contact
 
