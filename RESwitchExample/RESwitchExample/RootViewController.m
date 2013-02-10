@@ -38,8 +38,8 @@
     
     switchView.on = NO;
     
-    RESwitch *switch2 = [[RESwitch alloc] initWithFrame:CGRectMake(200, 220, 76, 28)];
-    [self.view addSubview:switch2];
+    RESwitch *defaultSwitch = [[RESwitch alloc] initWithFrame:CGRectMake(200, 220, 76, 28)];
+    [self.view addSubview:defaultSwitch];
 }
 
 - (void)switchViewChanged:(RESwitch *)switchView
