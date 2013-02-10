@@ -47,6 +47,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.on = YES;
         _knobOffset = CGSizeMake(0, 0);
         _textShadowOffset = CGSizeMake(0, -1);
         _font = [UIFont boldSystemFontOfSize:17];
