@@ -46,52 +46,62 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
-        self.on = YES;
-        _knobOffset = CGSizeMake(0, 0);
-        _textShadowOffset = CGSizeMake(0, -1);
-        _font = [UIFont boldSystemFontOfSize:17];
-        _onLabelOffset = CGSizeMake(0, 0);
-        _offLabelOffset = CGSizeMake(0, 0);
-        _onLabelTextColor = [UIColor whiteColor];
-        _offLabelTextColor = [UIColor colorWithRed:139/255.0 green:139/255.0 blue:139/255.0 alpha:1];
-        _onLabelTextShadowColor = [UIColor colorWithRed:0 green:102/255.0 blue:186/255.0 alpha:1];
-        _offLabelTextShadowColor = [UIColor clearColor];
-        
-        _containerView = [[UIView alloc] initWithFrame:self.bounds];
-        _containerView.clipsToBounds = YES;
-        [self addSubview:_containerView];
-        
-        _backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width * 2, frame.size.height)];
-        _backgroundView.userInteractionEnabled = YES;
-        [_containerView addSubview:_backgroundView];
-        
-        _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectNull];
-        [_backgroundView addSubview:_backgroundImageView];
-        
-        _overlayImageView = [[UIImageView alloc] initWithFrame:self.bounds];
-        [self addSubview:_overlayImageView];
-        
-        _knobView = [[UIImageView alloc] initWithFrame:CGRectNull];
-        [self addSubview:_knobView];
-        
-        UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognizerDidChange:)];
-        [_backgroundView addGestureRecognizer:panGestureRecognizer];
-        
-        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecognizerDidChange:)];
-        [_backgroundView addGestureRecognizer:tapGestureRecognizer];
-        
-        _onLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 3, 20, 10)];
-        _onLabel.text = NSLocalizedString(@"ON", @"ON");
-        _onLabel.backgroundColor = [UIColor clearColor];
-        [_backgroundView addSubview:_onLabel];
-        
-        _offLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 3, 20, 10)];
-        _offLabel.text = NSLocalizedString(@"OFF", @"OFF");
-        _offLabel.backgroundColor = [UIColor clearColor];
-        [_backgroundView addSubview:_offLabel];
-    }
+    [self commonInitWithFrame:frame];
     return self;
+}
+
+- (id) initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    [self commonInitWithFrame:self.frame];
+    return self;
+}
+
+- (void) commonInitWithFrame : (CGRect)frame
+{
+    self.on = YES;
+    _knobOffset = CGSizeMake(0, 0);
+    _textShadowOffset = CGSizeMake(0, -1);
+    _font = [UIFont boldSystemFontOfSize:17];
+    _onLabelOffset = CGSizeMake(0, 0);
+    _offLabelOffset = CGSizeMake(0, 0);
+    _onLabelTextColor = [UIColor whiteColor];
+    _offLabelTextColor = [UIColor colorWithRed:139/255.0 green:139/255.0 blue:139/255.0 alpha:1];
+    _onLabelTextShadowColor = [UIColor colorWithRed:0 green:102/255.0 blue:186/255.0 alpha:1];
+    _offLabelTextShadowColor = [UIColor clearColor];
+    
+    _containerView = [[UIView alloc] initWithFrame:self.bounds];
+    _containerView.clipsToBounds = YES;
+    [self addSubview:_containerView];
+    
+    _backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width * 2, frame.size.height)];
+    _backgroundView.userInteractionEnabled = YES;
+    [_containerView addSubview:_backgroundView];
+    
+    _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectNull];
+    [_backgroundView addSubview:_backgroundImageView];
+    
+    _overlayImageView = [[UIImageView alloc] initWithFrame:self.bounds];
+    [self addSubview:_overlayImageView];
+    
+    _knobView = [[UIImageView alloc] initWithFrame:CGRectNull];
+    [self addSubview:_knobView];
+    
+    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognizerDidChange:)];
+    [_backgroundView addGestureRecognizer:panGestureRecognizer];
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecognizerDidChange:)];
+    [_backgroundView addGestureRecognizer:tapGestureRecognizer];
+    
+    _onLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 3, 20, 10)];
+    _onLabel.text = NSLocalizedString(@"ON", @"ON");
+    _onLabel.backgroundColor = [UIColor clearColor];
+    [_backgroundView addSubview:_onLabel];
+    
+    _offLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 3, 20, 10)];
+    _offLabel.text = NSLocalizedString(@"OFF", @"OFF");
+    _offLabel.backgroundColor = [UIColor clearColor];
+    [_backgroundView addSubview:_offLabel];
 }
 
 - (void)layoutSubviews
