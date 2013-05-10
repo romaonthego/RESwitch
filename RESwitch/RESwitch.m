@@ -107,6 +107,8 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    _containerView.frame = self.bounds;
+    _backgroundView.frame = CGRectMake(0, 0, self.frame.size.width * 2, self.frame.size.height);
     
     CGRect frame = _backgroundView.frame;
     frame.origin.x = _isOn ? 0 : self.offPosition;
