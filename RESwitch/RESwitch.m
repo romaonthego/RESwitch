@@ -50,14 +50,14 @@
     return self;
 }
 
-- (id) initWithCoder:(NSCoder *)aDecoder
+- (id)initWithCoder:(NSCoder *)coder
 {
-    self = [super initWithCoder:aDecoder];
+    self = [super initWithCoder:coder];
     [self commonInitWithFrame:self.frame];
     return self;
 }
 
-- (void) commonInitWithFrame : (CGRect)frame
+- (void)commonInitWithFrame : (CGRect)frame
 {
     self.on = YES;
     _knobOffset = CGSizeMake(0, 0);
