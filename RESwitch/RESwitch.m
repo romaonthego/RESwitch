@@ -57,7 +57,7 @@
     return self;
 }
 
-- (void)commonInitWithFrame : (CGRect)frame
+- (void)commonInitWithFrame:(CGRect)frame
 {
     self.on = YES;
     _knobOffset = CGSizeMake(0, 0);
