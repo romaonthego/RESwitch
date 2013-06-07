@@ -30,7 +30,7 @@ Edit your Podfile and add `RESwitch`:
 ``` bash
 $ edit Podfile
 platform :ios, '5.0'
-pod 'RESwitch', '~> 1.0'
+pod 'RESwitch', '~> 1.0.1'
 ```
 
 Install into your Xcode project:
